@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <title>jQuery demo</title>
+  </head>
+  <body>
+    <form id="uploadForm">
+      <input type="file" name="image" id="imageInput" /><br />
+      <input
+        type="text"
+        name="picName"
+        id="picName"
+        placeholder="Pic a name"
+      /><br />
+      <button type="button" onclick="uploadImage()">Upload Image</button>
+    </form>
+    <div class="horizontal-list">
+      <!-- <div class="imageContainer">
+        <img src="C:/Users/Administrator/Pictures/1657487624668.jpg" />
+        <h1 style="text-align: center">Useless</h1>
+      </div>
+      <div class="imageContainer">
+        <img src="C:/Users/Administrator/Pictures/1657487624668.jpg" />
+        <h1 style="text-align: center">Useless</h1>
+      </div>
+      <div class="imageContainer">
+        <img src="C:/Users/Administrator/Pictures/beavis_and_butthead.png" />
+        <h1 style="text-align: center">Useless</h1> -->
+      </div>
+    </div>
+    <div id="imageModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+        <img
+          id="modalPic"
+          src="C:/Users/Administrator/Pictures/1657487624668.jpg"
+          alt="Image"
+        />
+      </div>
+      <script src="app.js"></script>
+    </div>
+  </body>
+</html>

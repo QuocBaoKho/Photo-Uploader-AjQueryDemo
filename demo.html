@@ -8,15 +8,20 @@
     <title>jQuery demo</title>
   </head>
   <body>
-    <form id="uploadForm">
-      <input type="file" name="image" id="imageInput" /><br />
+    <form
+      action="http://localhost:3000/upload"
+      id="uploadForm"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input type="file" name="image" id="imageInput" accept="image/*" /><br />
       <input
         type="text"
         name="picName"
         id="picName"
         placeholder="Pic a name"
       /><br />
-      <button type="button" onclick="uploadImage()">Upload Image</button>
+      <input type="submit" onclick="uploadImage()" value="Upload Image" />
     </form>
     <div class="horizontal-list">
       <!-- <div class="imageContainer">
@@ -29,8 +34,8 @@
       </div>
       <div class="imageContainer">
         <img src="C:/Users/Administrator/Pictures/beavis_and_butthead.png" />
-        <h1 style="text-align: center">Useless</h1> -->
-      </div>
+        <h1 style="text-align: center">Useless</h1>
+      </div> -->
     </div>
     <div id="imageModal" class="modal">
       <div class="modal-content">

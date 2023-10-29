@@ -1,20 +1,56 @@
 "use strict";
-console.log("2");
-const pics = document.querySelectorAll("img");
+$(document).ready(function () {
+  $("#uploadForm").on("submit", function (e) {
+    e.preventDefault();
+    var imageInput = document.getElementById("imageInput").files[0].name;
+    var descriptionInput = $("#picName").val();
+    var formData = new FormData(this);
+    console.log(imageInput);
+    console.log(descriptionInput);
+    for (const value of formData.values()) {
+      console.log("yeah");
+      console.log(value);
+    }
 
+    let data = {};
+    data.image = imageInput;
+    data.description = descriptionInput;
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:3000/upload",
+      data: formData,
+      contentType: "application/json",
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        console.log(data);
+        alert(data);
+      },
+      error: function (error) {
+        console.error(error);
+        alert("Error uploading image.");
+      },
+    });
+  });
+});
 $(window).on("load", function () {
   const modal = $("#imageModal");
   $("img").on("click", function () {
     console.log("leuleu");
-    document.getElementById("imageModal").style.display = "block";
-    document.getElementById("modalPic").src = this.src;
+    // document.getElementById("imageModal").style.display = "block";
+    $("#imageModal").css("display", "block");
+    // document.getElementById("modalPic").src = this.src;
+    $("#modalPic").attr("src", this.src);
   });
   $(document).on("click", function (e) {
-    if (e.target === modal[0])
-      document.getElementById("imageModal").style.display = "none";
+    if (e.target === modal[0]) {
+      // document.getElementById("imageModal").style.display = "none";
+      $("#imageModal").hide();
+    }
   });
   $("#closeModalBtn").on("click", function (e) {
-    document.getElementById("imageModal").style.display = "none";
+    // document.getElementById("imageModal").style.display = "none";
+    $("#imageModal").hide();
   });
 
   // Run code
@@ -24,15 +60,20 @@ function load() {
   const modal = $("#imageModal");
   $("img").on("click", function () {
     console.log("leuleu");
-    document.getElementById("imageModal").style.display = "block";
-    document.getElementById("modalPic").src = this.src;
+    // document.getElementById("imageModal").style.display = "block";
+    $("#imageModal").css("display", "block");
+    // document.getElementById("modalPic").src = this.src;
+    $("#modalPic").attr("src", this.src);
   });
   $(document).on("click", function (e) {
-    if (e.target === modal[0])
-      document.getElementById("imageModal").style.display = "none";
+    if (e.target === modal[0]) {
+      // document.getElementById("imageModal").style.display = "none";
+      $("#imageModal").hide();
+    }
   });
   $("#closeModalBtn").on("click", function (e) {
-    document.getElementById("imageModal").style.display = "none";
+    // document.getElementById("imageModal").style.display = "none";
+    $("#imageModal").hide();
   });
 }
 

@@ -1,4 +1,13 @@
 "use strict";
+function renderPicList(picList) {
+  const pictureList = picList.map(
+    (item) => `<div class="imageContainer">
+  <img src="uploads/${item.image}" />
+  <h1 style="text-align: center">${item.description}</h1>
+</div>`
+  );
+  $(".horizontal-list").html(pictureList.join(""));
+}
 $(document).ready(function () {
   $("#uploadForm").on("submit", function (e) {
     e.preventDefault();
@@ -52,7 +61,14 @@ $(window).on("load", function () {
     // document.getElementById("imageModal").style.display = "none";
     $("#imageModal").hide();
   });
-
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/getData",
+    dataType: "json",
+    success: function (info) {
+      renderPicList(info);
+    },
+  });
   // Run code
 });
 

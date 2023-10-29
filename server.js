@@ -62,6 +62,19 @@ app.post("/upload", upload.single("image"), (req, res) => {
     });
   });
 });
+app.get("/getData", (req, res) => {
+  fs.readFile("data.json", "utf8", (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to read JSON file" });
+      return;
+    }
+
+    console.log(data);
+    var jsonData = JSON.parse(data);
+    res.json(jsonData);
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

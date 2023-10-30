@@ -42,17 +42,29 @@ button {
   font-size: 20px;
   cursor: pointer;
 }
-
+.bigger {
+  font-size: 30px;
+}
+.removePic {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  font-size: 30px;
+}
 /* Style the image in the modal */
 .modal-content img {
   width: 100%; /* Ensure the image takes up the entire width of the modal */
 }
 .horizontal-list {
   display: flex; /* Use flexbox for horizontal layout */
+  flex-direction: row;
   justify-content: center; /* Adjust this as needed */
   align-items: center;
   padding: 10px;
   border: 1px solid #ccc;
+  flex-wrap: wrap;
 }
 .imageContainer {
   width: 400px;

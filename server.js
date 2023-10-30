@@ -48,7 +48,11 @@ app.post("/upload", upload.single("image"), (req, res) => {
     var jsonData = JSON.parse(data);
 
     // Add the new data to the JSON object
-    jsonData.push({ image: imageUrl, description: picName });
+    jsonData.push({
+      id: jsonData.length + 1,
+      image: imageUrl,
+      description: picName,
+    });
 
     // Write the updated JSON data back to the file
     fs.writeFile("data.json", JSON.stringify(jsonData, null, 2), (err) => {
@@ -59,6 +63,46 @@ app.post("/upload", upload.single("image"), (req, res) => {
       }
 
       res.json({ message: "Image uploaded and description added." });
+    });
+  });
+});
+app.post("/remove", (req, res) => {
+  const image = req.body.image.replace("uploads/", "");
+  const description = req.body.description;
+  console.log("Request;", req.body);
+  console.log("UImage: ", image);
+  console.log("UDescription: ", description);
+  fs.readFile("data.json", "utf-8", (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to read JSON file" });
+      return;
+    }
+
+    var jsonData = JSON.parse(data);
+    jsonData = jsonData.filter((inf) => {
+      console.log("Image: ", inf.image);
+      console.log("Description: ", inf.description);
+      if (inf.image == image && inf.description == description) return false;
+      return true;
+    });
+    console.log("Data: ", jsonData);
+    fs.writeFile("data.json", JSON.stringify(jsonData, null, 2), (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to write JSON file" });
+        return;
+      }
+      fs.unlink(req.body.image, (err) => {
+        if (err) {
+          console.error("Error deleting image:", err);
+          res.status(500).send("Error deleting image");
+        } else {
+          console.log("Image deleted.");
+          // Send a success response to the client.
+        }
+      });
+      res.json({ message: "Image removed and description deleted." });
     });
   });
 });

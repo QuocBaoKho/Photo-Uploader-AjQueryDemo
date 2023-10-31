@@ -4,6 +4,11 @@
 body {
   background-color: #a0522d;
 }
+.removePic {
+  background-color: red;
+  color: white;
+  border-radius: 500px;
+}
 input[type="text"] {
   border-radius: 30px;
   border: 1px solid transparent;
@@ -88,9 +93,9 @@ header {
 }
 .horizontal-list {
   margin: 30px;
-  display: flex; /* Use flexbox for horizontal layout */
+  display: flex;
   flex-direction: row;
-  justify-content: center; /* Adjust this as needed */
+  justify-content: center;
   align-items: center;
   padding: 10px;
   border: 1px solid #ccc;

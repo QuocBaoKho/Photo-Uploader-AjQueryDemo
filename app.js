@@ -49,7 +49,9 @@ $(window).on("load", function () {
       processData: false,
       success: function (data) {
         console.log(data);
-        alert(data);
+        alert(data.message);
+        console.log("Succeeded!");
+
         $.ajax({
           type: "GET",
           url: "http://localhost:3000/getData",
@@ -99,36 +101,38 @@ function load() {
     console.log("HIDE!");
   });
   $(".removePic").on("click", function () {
-    let imageContainer = $(this).closest(".imageContainer");
-    let image = imageContainer.find(".imageToModal").attr("src");
-    let description = imageContainer.find("h1").text();
-    console.log(image, description);
-    console.log(imageContainer);
-    const object = { image: image, description: description };
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:3000/remove",
-      contentType: "application/json",
-      data: JSON.stringify(object),
-      success: function (data) {
-        console.log(data);
-        alert(data);
-        $.ajax({
-          type: "GET",
-          url: "http://localhost:3000/getData",
-          dataType: "json",
-          success: function (info) {
-            console.log(info);
-            renderPicList(info);
-            load();
-          },
-        });
-      },
-      error: function (error) {
-        console.error(error);
-        alert("Error uploading image.");
-      },
-    });
+    if (window.confirm("Do you really want to delete this pic?")) {
+      let imageContainer = $(this).closest(".imageContainer");
+      let image = imageContainer.find(".imageToModal").attr("src");
+      let description = imageContainer.find("h1").text();
+      console.log(image, description);
+      console.log(imageContainer);
+      const object = { image: image, description: description };
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:3000/remove",
+        contentType: "application/json",
+        data: JSON.stringify(object),
+        success: function (data) {
+          console.log(data);
+          alert(data.message);
+          $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/getData",
+            dataType: "json",
+            success: function (info) {
+              console.log(info);
+              renderPicList(info);
+              load();
+            },
+          });
+        },
+        error: function (error) {
+          console.error(error);
+          alert("Error uploading image.");
+        },
+      });
+    }
   });
 }
 

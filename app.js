@@ -1,5 +1,5 @@
 "use strict";
-
+//tao giao dien cho list hinh anh
 function renderPicList(picList) {
   const pictureList = picList.map(
     (item) => `<div class="imageContainer">
@@ -85,6 +85,14 @@ function load() {
       $("#imageModal").hide();
     }
   });
+  $("input[type=submit]").on("mouseenter", function () {
+    console.log("Fade in");
+    $("input[type=submit]").fadeOut(300);
+    $("input[type=submit]").fadeIn(300);
+  });
+  // $("input[type=submit]").on("mouseout", function () {
+  //   $("input[type=submit]").fadeIn(300);
+  // });
   $("#closeModalBtn").on("click", function () {
     // document.getElementById("imageModal").style.display = "none";
     $("#imageModal").hide();

@@ -1,13 +1,27 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
-input[type="text"],
-button {
+body {
+  background-color: #a0522d;
+}
+input[type="text"] {
   border-radius: 30px;
-  border: 1px solid red;
+  border: 1px solid transparent;
   margin: 20px;
   outline: none;
   padding: 10px;
+}
+input[type="submit"] {
+  border-radius: 30px;
+  outline: none;
+  border-color: transparent;
+  padding: 15px;
+  color: #ffffff;
+  background-color: #2e8b57;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #ffd700;
 }
 .modal {
   display: none; /* Initially hidden */
@@ -31,6 +45,21 @@ button {
   /* border: 1px solid #888; */
   /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
   text-align: center;
+  border-radius: 5px;
+}
+header {
+  display: block;
+  width: 100;
+  height: 100;
+  margin: 70;
+}
+.custom-file-input-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff; /* Change this to your desired background color */
+  color: #fff; /* Text color */
+  cursor: pointer;
+  border: 1px solid #007bff; /* Border color */
   border-radius: 5px;
 }
 
@@ -58,6 +87,7 @@ button {
   width: 100%; /* Ensure the image takes up the entire width of the modal */
 }
 .horizontal-list {
+  margin: 30px;
   display: flex; /* Use flexbox for horizontal layout */
   flex-direction: row;
   justify-content: center; /* Adjust this as needed */
@@ -65,6 +95,8 @@ button {
   padding: 10px;
   border: 1px solid #ccc;
   flex-wrap: wrap;
+  background-color: #4682b4;
+  border-radius: 25px;
 }
 .imageContainer {
   width: 400px;
